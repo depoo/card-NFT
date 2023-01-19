@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap');
+
+$font:(
+  "outfit": 'Outfit',
+  "ligth":300,
+  "regular":400,
+  "SemiBold":600
+);
+
+@mixin flexible($dis, $direction, $corte, $just, $align){
+  display        : $dis;
+  flex-flow      : $direction $corte;
+  justify-content: $just;
+  align-items    : $align;
+}
+
+*,*:after, *:before{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root{
+  // Primary Colors
+  --Soft-blue: hsl(215, 51%, 70%);
+  --Cyan: hsl(178, 100%, 50%);
+  --Cyan_opacity: hsl(178, 100%, 50%, 0.2);
+
+  // Neutral
+  --Very-dark-blue_main_BG: hsl(217, 54%, 11%);
+  --Very-dark-blue_card_BG: hsl(216, 50%, 16%);
+  --Very-dark-blue_line: hsl(215, 32%, 27%);
+  --White: hsl(0, 0%, 100%);
+}
+html{
+  font-size: 100%;
+}
+body{
+  font-size: 100%;
+  font-family: map-get($font, "outfit" );
+}
+
+.flex{
+  @include flexible(flex, column, nowrap, center, center);
+  background-color: var(--Very-dark-blue_main_BG);
+  min-height: 100vh;
+}
+
+.card{
+  background-color: var(--Very-dark-blue_card_BG);
+  padding: 24px;
+  border-radius: 16px;
+  overflow: hidden;
+
+  &-image{
+    position: relative;
+    margin-bottom: 1.25rem;
+
+    &__main{
+      width: 17.375rem;
+      border-radius: .875rem;
+      // margin-bottom: 24px;
+      cursor: pointer;
+    }
+
+    & div{
+      position: absolute;
+      background-color: var(--Cyan_opacity);
+      top: 0;
+      width: 17.375rem;
+      height: 17.375rem;
+      opacity: 0;
+
+      &:hover{
+        opacity: 1;
+        cursor: pointer;
+        border-radius: .875rem;
+      }
+
+      & .card-image__view{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+
+  &-body{
+    width: 278px;
+
+    &-title{
+      font-size: 22px;
+      color: var(--White);
+      font-weight: map-get($font , "SemiBold" );
+
+      &:hover{
+        cursor: pointer;
+        color: var(--Cyan);
+      }
+    }
+
+    &-text{
+      font-weight: map-get($font, "regular" );
+      color: var(--Soft-blue);
+      line-height: 25px;
+      padding: 15px 0 0 0;
+    }
+
+    &-list{
+      display: flex;
+      justify-content: space-between;
+      padding: 1.0625rem 0;
+      border-bottom: 1px solid var(--Very-dark-blue_line);
+
+      &__eth{
+        display: flex;
+        align-items: center;
+        gap: 9px;
+
+        & .icon-ehterum{
+          width: 11px;
+          height: 18px;
+        }
+
+        & span{
+          font-size: 0.875em;
+          font-weight: map-get($font , "SemiBold" );
+          color: var(--Cyan)
+        }
+      }
+
+      &__day{
+        display: flex;
+        align-items: center;
+        gap: 9px;
+
+        & .icon-clock{
+          width: 17px;
+          height: 17px;
+        }
+        & span{
+          font-size: 0.875em;
+          font-weight: map-get($font , "regular" );
+          color: var(--Soft-blue)
+        }
+      }
+    }
+  }
+
+  &-footer{
+    padding: 1.0625rem 0 0 0;
+    display: flex;
+    align-items: center;
+    gap: 17px;
+
+    &-perfil{
+      width: 1.9375rem;
+      height: 1.875rem;
+      border-radius: 50%;
+      border: .0625rem solid var(--White);
+    }
+    &-author{
+      font-weight: map-get($font, "ligth");
+      color: var(--Soft-blue);
+    
+      &__name{
+        font-size: 0.875em;
+        color: var(--White);
+        &:hover{
+          cursor: pointer;
+          color: var(--Cyan);
+        }
+      }
+    }
+  }
+}
